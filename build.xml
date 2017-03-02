@@ -15,7 +15,7 @@
         <delete dir="build"/>
     </target>
 
-    <target name="jar">
+    <target name="build" depends="compile">
         <mkdir dir="build/jar"/>
         <jar destfile="build/jar/PigLatin.jar" basedir="${main.build.dir}">
             <manifest>
@@ -24,7 +24,7 @@
         </jar>
     </target>
 
-    <target name="run" depends="jar">
+    <target name="run" depends="build">
         <java jar="build/jar/PigLatin.jar" fork="true"/>
     </target>
 
