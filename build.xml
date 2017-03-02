@@ -17,14 +17,14 @@
 
     <target name="jar">
         <mkdir dir="build/jar"/>
-        <jar destfile="build/jar/PigLatin.jar" basedir="build/classes">
+        <jar destfile="build/jar/PigLatin.jar" basedir="${main.build.dir}">
             <manifest>
-                <attribute name="Main-Class" value="oata.PigLatin"/>
+                <attribute name="Main-Class" value="PigLatin"/>
             </manifest>
         </jar>
     </target>
 
-    <target name="run">
+    <target name="run" depends="jar">
         <java jar="build/jar/PigLatin.jar" fork="true"/>
     </target>
 
