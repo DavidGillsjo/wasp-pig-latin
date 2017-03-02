@@ -8,3 +8,8 @@ java -jar build/jar/PigLatin.jar
 
 # Compile and run unit tests
 ant test
+
+#Dependencies
+Java SE JDK 8
+
+Ant
