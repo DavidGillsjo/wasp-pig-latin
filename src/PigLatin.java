@@ -25,7 +25,7 @@ public class PigLatin {
 	 */
 	public String translate(String word)
 	{
-		return "Pig Latin text...";
+		return "igpay";
 	}
 	
 	public static void main(String[] args)
