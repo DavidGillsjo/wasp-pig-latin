@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -28,6 +29,13 @@ public class PigLatinTest {
                         String translated = pig.translate((String)pair.getKey());
                         assertEquals(correct, translated);
                 }
+        }
+        @Test
+        public void runQuiz() {
+                PigLatin pig = new PigLatin();
+                String english_sentence = pig.getQuizSentence();
+                assertTrue((english_sentence != null && !english_sentence.isEmpty()));
+                //translated_sentence = pig.getQuizSentence();
         }
 
 }

@@ -1,15 +1,24 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class PigLatin {
 	
+	private ArrayList<String> quizSentences;
+	private Random randomGenerator;
+
 	/**
 	 * Constructor for PigLatin class. Empty at the moment.
 	 */
 	public PigLatin()
 	{
-		
+		quizSentences = new ArrayList<String>();
+		quizSentences.add("Hello World");
+		quizSentences.add("I see you!");
+		quizSentences.add("Testing testing...");
+		randomGenerator = new Random();
 	}
 	
 	/**
@@ -48,6 +57,16 @@ public class PigLatin {
 
 		return translated_word;
 
+	}
+
+	/**
+	 * Return string for quiz.
+	 */
+	public String getQuizSentence()
+	{
+		int index = randomGenerator.nextInt(quizSentences.size());
+        String sentence = quizSentences.get(index);
+        return sentence;
 	}
 	
 	public static void main(String[] args)
