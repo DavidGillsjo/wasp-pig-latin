@@ -29,6 +29,7 @@ public class PigLatinTest {
                 }
         }
         
+        @Test
 		public void translatePunctuatedWord() {
                 PigLatin pig = new PigLatin();
                 Map<String, String> map = new HashMap<String, String>();
