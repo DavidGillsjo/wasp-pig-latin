@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PigLatin {
 	
@@ -25,7 +27,22 @@ public class PigLatin {
 	 */
 	public String translate(String word)
 	{
-		return "igpay";
+		
+		// Create a Pattern object
+		String vowels = "([^AEIOU]*)([AEIOU].*)";
+      	Pattern r = Pattern.compile(vowels,Pattern.CASE_INSENSITIVE);
+
+      	Matcher m = r.matcher(word);
+      	String translated_word;
+      	if (m.find()) {
+			// Found vowel
+			translated_word = m.group(2) + m.group(1) + "ay";
+      	}else {
+        	// No vowel
+        	translated_word = word;
+      	}
+
+		return translated_word;
 	}
 	
 	public static void main(String[] args)
