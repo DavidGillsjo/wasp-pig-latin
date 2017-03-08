@@ -19,13 +19,13 @@ public class PigLatinTest {
                 map.put("banana", "ananabay");
                 map.put("banana???", "ananabay???");
                 map.put("trash", "ashtray");
-                map.put("trash.", "ashtray.");
-                
+                map.put("Trash", "Ashtray");
+
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
                         Map.Entry pair = (Map.Entry)it.next();
                         String correct = (String)pair.getValue();
-                        String translated = pig.translate((String)pair.getKey());
+                        String translated = pig.translateWord((String)pair.getKey());
                         assertEquals(correct, translated);
                 }
         }
