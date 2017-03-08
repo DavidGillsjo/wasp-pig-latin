@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.lang.StringBuilder;
+import java.lang.Character;
 
 public class PigLatin {
 	
@@ -29,18 +30,26 @@ public class PigLatin {
 	public String translateWord(String word)
 	{
 		
-		// Create a Pattern object
-		String vowels = "([^AEIOU]*)([AEIOU].*)";
+		/** Create a Pattern object
+		* Group 1: Consonants before first vowel
+		* Group 2: First vowel and all letters
+		* Group 3: Other characters (comma, questionmark, etc.)
+		*/
+		String vowels = "(\\A[^AEIOU]*)([AEIOU]\\w*)(\\W*)\\z";
                 Pattern r = Pattern.compile(vowels,Pattern.CASE_INSENSITIVE);
 
                 Matcher m = r.matcher(word);
                 String translated_word;
                 if (m.find()) {
 			// Found vowel
-			translated_word = m.group(2) + m.group(1) + "ay";
+			translated_word = m.group(2) + m.group(1) + "ay" + m.group(3);
                 }else {
                         // No vowel
                         translated_word = word;
+                }
+
+                if( Character.isUpperCase(word.charAt(0))){
+                        translated_word = Character.toUpperCase(translated_word.charAt(0)) + translated_word.substring(1).toLowerCase();
                 }
 
 		return translated_word;

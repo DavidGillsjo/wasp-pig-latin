@@ -15,9 +15,12 @@ public class PigLatinTest {
 
                 map.put("pig", "igpay");
                 map.put("latin", "atinlay");
+                map.put("latin,", "atinlay,");
                 map.put("banana", "ananabay");
+                map.put("banana???", "ananabay???");
                 map.put("trash", "ashtray");
-                
+                map.put("Trash", "Ashtray");
+
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
                         Map.Entry pair = (Map.Entry)it.next();
