@@ -8,4 +8,12 @@ public class PigLatinTest {
     String word = pig.translate("pig");
     assertEquals("igpay", word);
   }
+
+  // Ugly fix, introduce parameterized test instead
+  @Test
+  public void translateWord2() {
+    PigLatin pig = new PigLatin();
+    String word = pig.translate("latin");
+    assertEquals("atinlay", word);
+  }
 }
