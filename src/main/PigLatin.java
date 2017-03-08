@@ -44,7 +44,7 @@ public class PigLatin {
 			translated_word = m.group(2) + m.group(1) + "ay" + m.group(3);
                 }else {
                         // No vowel
-                        translated_word = word;
+                        translated_word = word + "ay";
                 }
 
                 if( Character.isUpperCase(word.charAt(0))){

@@ -21,6 +21,8 @@ public class PigLatinTest {
                 map.put("trash", "ashtray");
                 map.put("Trash", "Ashtray");
 
+                map.put("T", "Tay");
+
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
                         Map.Entry pair = (Map.Entry)it.next();
