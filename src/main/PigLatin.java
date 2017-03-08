@@ -25,7 +25,22 @@ public class PigLatin {
 	 */
 	public String translate(String word)
 	{
-		return "igpay";
+                char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+                int l = word.length();
+                for (int j = 0; j<l; j++){
+                
+                        for (int i = 0; i<vowels.length; i++){
+                                if (word.charAt(j) == vowels[i]){
+                                        char[] last  = new char[j];
+                                        char[] first = new char[l-j]; 
+                                        word.getChars(0,j,last,0);
+                                        word.getChars(j,l,first,0);
+                                        return String.valueOf(first) + String.valueOf(last) + "ay";
+                                }
+                        }
+                } 
+                
+		return "wtf!";
 	}
 	
 	public static void main(String[] args)
