@@ -64,8 +64,15 @@ public class PigLatin {
 		
 		for (int i = 0; i < words.length; i++) 
 		{
-			String translatedWord = translateWord(words[i]);		
+			String word = words[i];
 			
+			if (word.isEmpty())
+			{
+				// Dont translate empty words
+				continue;
+			}
+			
+			String translatedWord = translateWord(words[i]);				
 			sb.append(translatedWord);
 			
 			if (i < words.length - 1)

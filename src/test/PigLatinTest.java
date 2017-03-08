@@ -15,13 +15,28 @@ public class PigLatinTest {
 
                 map.put("pig", "igpay");
                 map.put("latin", "atinlay");
-                map.put("latin,", "atinlay,");
                 map.put("banana", "ananabay");
-                map.put("banana???", "ananabay???");
                 map.put("trash", "ashtray");
                 map.put("Trash", "Ashtray");
-
                 map.put("T", "Tay");
+
+                Iterator it = map.entrySet().iterator();
+                while (it.hasNext()){
+                        Map.Entry pair = (Map.Entry)it.next();
+                        String correct = (String)pair.getValue();
+                        String translated = pig.translateWord((String)pair.getKey());
+                        assertEquals(correct, translated);
+                }
+        }
+        
+		public void translatePunctuatedWord() {
+                PigLatin pig = new PigLatin();
+                Map<String, String> map = new HashMap<String, String>();
+                
+                map.put("latin,", "atinlay,");
+                map.put("banana...", "ananabay...");
+                map.put("banana???", "ananabay???");
+                map.put("banana!!", "ananabay!!");
 
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
@@ -38,7 +53,8 @@ public class PigLatinTest {
                 Map<String, String> map = new HashMap<String, String>();
 
                 map.put("pig latin banana trash", "igpay atinlay ananabay ashtray");
-                map.put("pig latin  banana trash", "igpay atinlay  ananabay ashtray");
+                map.put("pig latin    banana trash", "igpay atinlay ananabay ashtray");
+                map.put("pig latin, banana trash!", "igpay atinlay, ananabay ashtray!");
                 
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
