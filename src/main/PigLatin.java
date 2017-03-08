@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.lang.StringBuilder;
 
 public class PigLatin {
 	
@@ -13,11 +14,11 @@ public class PigLatin {
 	}
 	
 	/**
-	 * Reads the input word from console and returns it as a String.
+	 * Reads the input sentence from console and returns it as a String.
 	 */
 	public String getInput()
 	{
-		System.out.print("Enter an english word: ");
+		System.out.print("Enter an English sentence: ");
 		Scanner input=new Scanner(System.in);
 		return input.nextLine();
 	}
@@ -25,7 +26,7 @@ public class PigLatin {
 	/**
 	 * Translates from English to Pig Latin. Returns the translated word as a String.
 	 */
-	public String translate(String word)
+	public String translateWord(String word)
 	{
 		
 		// Create a Pattern object
@@ -46,15 +47,38 @@ public class PigLatin {
 
 	}
 	
-	public static void main(String[] args)
+	public String translateSentence(String sentence)
 	{
+		String[] words = sentence.split(" ");
 		
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < words.length; i++) 
+		{
+			String translatedWord = translateWord(words[i]);		
+			
+			sb.append(translatedWord);
+			
+			if (i < words.length - 1)
+			{
+				sb.append(" ");
+			}
+			
+		}
+		
+		return sb.toString();	
+	}
+	
+	
+	
+	public static void main(String[] args)
+	{	
 		PigLatin pig = new PigLatin();
-		String inputWord = pig.getInput();
-		String translatedWord = pig.translate(inputWord);
+		String inputSentence = pig.getInput();
+		String translatedSentence = pig.translateSentence(inputSentence);
 		
-		System.out.println("English: " + inputWord);
-		System.out.println("Pig Latin: " + translatedWord);
+		System.out.println("English: " + inputSentence);
+		System.out.println("Pig Latin: " + translatedSentence);
 	}
 
 

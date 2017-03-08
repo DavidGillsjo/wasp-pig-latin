@@ -9,7 +9,7 @@ import java.util.Collections;
 public class PigLatinTest {
 
         @Test
-        public void translateWord() {
+        public void translatePlainWord() {
                 PigLatin pig = new PigLatin();
                 Map<String, String> map = new HashMap<String, String>();
 
@@ -22,8 +22,25 @@ public class PigLatinTest {
                 while (it.hasNext()){
                         Map.Entry pair = (Map.Entry)it.next();
                         String correct = (String)pair.getValue();
-                        String translated = pig.translate((String)pair.getKey());
+                        String translated = pig.translateWord((String)pair.getKey());
                         assertEquals(correct, translated);
+                }
+        }
+        
+        @Test
+        public void translateSentence() {
+                PigLatin pig = new PigLatin();
+                Map<String, String> map = new HashMap<String, String>();
+
+                map.put("pig latin banana trash", "igpay atinlay ananabay ashtray");
+                map.put("pig latin  banana trash", "igpay atinlay  ananabay ashtray");
+                
+                Iterator it = map.entrySet().iterator();
+                while (it.hasNext()){
+                        Map.Entry pair = (Map.Entry)it.next();
+                        String correct = (String)pair.getValue();
+                        String translatedSentence = pig.translateSentence((String)pair.getKey());
+                        assertEquals(correct, translatedSentence);
                 }
         }
 
