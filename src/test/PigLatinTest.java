@@ -38,6 +38,7 @@ public class PigLatinTest {
                 map.put("banana...", "ananabay...");
                 map.put("banana???", "ananabay???");
                 map.put("banana!!", "ananabay!!");
+		map.put("we're", "e'reway");
 
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
