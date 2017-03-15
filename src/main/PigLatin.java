@@ -23,6 +23,8 @@ public class PigLatin {
 		quizSentences.add("Hello World");
 		quizSentences.add("I see you!");
 		quizSentences.add("Testing testing...");
+		quizSentences.add("Class dismissed!");
+		quizSentences.add("Translate this?");
 		randomGenerator = new Random();
 	}
 	
