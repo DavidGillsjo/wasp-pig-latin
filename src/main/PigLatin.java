@@ -35,22 +35,35 @@ public class PigLatin {
 		* Group 2: First vowel and all letters
 		* Group 3: Other characters (comma, questionmark, etc.)
 		*/
-		String vowels = "(\\A[^AEIOUY]*)([AEIOUY][\\w']*)(\\W*)\\z";
-                Pattern r = Pattern.compile(vowels,Pattern.CASE_INSENSITIVE);
+		String word_uc = word.toUpperCase();
+		String word_ending = "ay";
+		if (word_uc.matches("\\A[AEIOUY].*")) {
+			// Starts with vowel
+			word_ending = "way";
+		}
 
-                Matcher m = r.matcher(word);
-                String translated_word;
-                if (m.find()) {
+		Pattern vowel_present_p = Pattern.compile("(\\A[^AEIOUY]*)([AEIOUY][\\w']*)(\\W*)\\z",Pattern.CASE_INSENSITIVE);
+
+		Matcher m = vowel_present_p.matcher(word);
+		String translated_word;
+		if (m.find()) {
 			// Found vowel
-			translated_word = m.group(2) + m.group(1) + "ay" + m.group(3);
-                }else {
-                        // No vowel
-                        translated_word = word + "ay";
-                }
+			translated_word = m.group(2) + m.group(1) + word_ending + m.group(3);
+		} else {
+			Pattern only_consonants_p = Pattern.compile("(\\A[\\w']+)(\\W*)\\z",Pattern.CASE_INSENSITIVE);
+			m = only_consonants_p.matcher(word);
+			if (m.find()) {
+				// No vowel
+				translated_word = m.group(1) + word_ending + m.group(2);
+			 } else {
+				// Fallback
+				translated_word = word + word_ending;
+			 }
+		}
 
-                if( Character.isUpperCase(word.charAt(0))){
-                        translated_word = Character.toUpperCase(translated_word.charAt(0)) + translated_word.substring(1).toLowerCase();
-                }
+		if( Character.isUpperCase(word.charAt(0))){
+				translated_word = Character.toUpperCase(translated_word.charAt(0)) + translated_word.substring(1).toLowerCase();
+		}
 
 		return translated_word;
 

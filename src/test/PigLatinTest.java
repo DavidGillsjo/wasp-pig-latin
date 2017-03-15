@@ -19,6 +19,9 @@ public class PigLatinTest {
                 map.put("trash", "ashtray");
                 map.put("Trash", "Ashtray");
                 map.put("T", "Tay");
+                map.put("a", "away");
+                map.put("eat", "eatway");
+                map.put("cheers", "eerschay");
 
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
@@ -38,7 +41,8 @@ public class PigLatinTest {
                 map.put("banana...", "ananabay...");
                 map.put("banana???", "ananabay???");
                 map.put("banana!!", "ananabay!!");
-		map.put("we're", "e'reway");
+		            map.put("we're", "e'reway");
+                map.put("t!", "tay!");
 
                 Iterator it = map.entrySet().iterator();
                 while (it.hasNext()){
