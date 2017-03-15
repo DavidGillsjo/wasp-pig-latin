@@ -9,7 +9,7 @@ ant build
 # Run PigLatin:
 java -jar build/jar/PigLatin.jar
 
-# Run PigLatin:
+# Run PigLatin Quiz:
 java -jar build/jar/PigLatin.jar quiz
 
 # Compile & Run PigLatin:
@@ -24,7 +24,7 @@ ant test
 # Clean
 ant clean
 
-#Dependencies
+# Dependencies
 Java SE JDK 8
 
 Ant
