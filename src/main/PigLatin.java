@@ -1,8 +1,13 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import java.util.ArrayList;
 import java.util.Random;
+
+import java.lang.StringBuilder;
+import java.lang.Character;
+
 
 public class PigLatin {
 	
@@ -22,11 +27,11 @@ public class PigLatin {
 	}
 	
 	/**
-	 * Reads the input word from console and returns it as a String.
+	 * Reads the input sentence from console and returns it as a String.
 	 */
 	public String getInput()
 	{
-		System.out.print("Enter an english word: ");
+		System.out.print("Enter an English sentence: ");
 		Scanner input=new Scanner(System.in);
 		return input.nextLine();
 	}
@@ -34,7 +39,7 @@ public class PigLatin {
 	/**
 	 * Translates from English to Pig Latin. Returns the translated word as a String.
 	 */
-	public String translate(String word)
+	public String translateWord(String word)
 	{
 		
 		/** Create a Pattern object
@@ -42,7 +47,7 @@ public class PigLatin {
 		* Group 2: First vowel and all letters
 		* Group 3: Other characters (comma, questionmark, etc.)
 		*/
-		String vowels = "(\\A[^AEIOU]*)([AEIOU]\\w*)(\\W*)\\z";
+		String vowels = "(\\A[^AEIOUY]*)([AEIOUY][\\w']*)(\\W*)\\z";
                 Pattern r = Pattern.compile(vowels,Pattern.CASE_INSENSITIVE);
 
                 Matcher m = r.matcher(word);
@@ -52,7 +57,11 @@ public class PigLatin {
 			translated_word = m.group(2) + m.group(1) + "ay" + m.group(3);
                 }else {
                         // No vowel
-                        translated_word = word;
+                        translated_word = word + "ay";
+                }
+
+                if( Character.isUpperCase(word.charAt(0))){
+                        translated_word = Character.toUpperCase(translated_word.charAt(0)) + translated_word.substring(1).toLowerCase();
                 }
 
 		return translated_word;
@@ -69,15 +78,45 @@ public class PigLatin {
         return sentence;
 	}
 	
-	public static void main(String[] args)
+	public String translateSentence(String sentence)
 	{
+		String[] words = sentence.split(" ");
 		
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < words.length; i++) 
+		{
+			String word = words[i];
+			
+			if (word.isEmpty())
+			{
+				// Dont translate empty words
+				continue;
+			}
+			
+			String translatedWord = translateWord(words[i]);				
+			sb.append(translatedWord);
+			
+			if (i < words.length - 1)
+			{
+				sb.append(" ");
+			}
+			
+		}
+		
+		return sb.toString();	
+	}
+	
+	
+	
+	public static void main(String[] args)
+	{	
 		PigLatin pig = new PigLatin();
-		String inputWord = pig.getInput();
-		String translatedWord = pig.translate(inputWord);
+		String inputSentence = pig.getInput();
+		String translatedSentence = pig.translateSentence(inputSentence);
 		
-		System.out.println("English: " + inputWord);
-		System.out.println("Pig Latin: " + translatedWord);
+		System.out.println("English: " + inputSentence);
+		System.out.println("Pig Latin: " + translatedSentence);
 	}
 
 
