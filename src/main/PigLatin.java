@@ -1,17 +1,29 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 import java.lang.StringBuilder;
 import java.lang.Character;
 
+
 public class PigLatin {
 	
+	private ArrayList<String> quizSentences;
+	private Random randomGenerator;
+
 	/**
 	 * Constructor for PigLatin class. Empty at the moment.
 	 */
 	public PigLatin()
 	{
-		
+		quizSentences = new ArrayList<String>();
+		quizSentences.add("Hello World");
+		quizSentences.add("I see you!");
+		quizSentences.add("Testing testing...");
+		randomGenerator = new Random();
 	}
 	
 	/**
@@ -19,7 +31,6 @@ public class PigLatin {
 	 */
 	public String getInput()
 	{
-		System.out.print("Enter an English sentence: ");
 		Scanner input=new Scanner(System.in);
 		return input.nextLine();
 	}
@@ -68,6 +79,16 @@ public class PigLatin {
 		return translated_word;
 
 	}
+
+	/**
+	 * Return string for quiz.
+	 */
+	public String getQuizSentence()
+	{
+		int index = randomGenerator.nextInt(quizSentences.size());
+        String sentence = quizSentences.get(index);
+        return sentence;
+	}
 	
 	public String translateSentence(String sentence)
 	{
@@ -98,16 +119,42 @@ public class PigLatin {
 		return sb.toString();	
 	}
 	
-	
+	public void runTranslator()
+	{
+		System.out.println("Enter an English sentence for translation:");
+		String inputSentence = this.getInput();
+		String translatedSentence = this.translateSentence(inputSentence);
+
+		System.out.println("English: " + inputSentence);
+		System.out.println("Pig Latin: " + translatedSentence);
+	}
+
+	public void runQuiz()
+	{
+		System.out.println("Translate the following sentence:");
+		String sentence = this.getQuizSentence();
+		System.out.println(sentence);
+		String userTranslation = this.getInput();
+
+		String correctTranslation = this.translateSentence(sentence);
+		if (userTranslation.matches(correctTranslation)) {
+			System.out.println("You are correct!");
+		} else {
+			System.out.println("You are wrong! Correct translation:");
+			System.out.println(correctTranslation);
+		}
+	}
 	
 	public static void main(String[] args)
 	{	
+		boolean quiz = args[0].matches("quiz");
+
 		PigLatin pig = new PigLatin();
-		String inputSentence = pig.getInput();
-		String translatedSentence = pig.translateSentence(inputSentence);
-		
-		System.out.println("English: " + inputSentence);
-		System.out.println("Pig Latin: " + translatedSentence);
+		if (quiz) {
+			pig.runQuiz();
+		} else {
+			pig.runTranslator();
+		}
 	}
 
 
