@@ -24,7 +24,7 @@ public class PigLatin {
 		quizSentences.add("I see you!");
 		quizSentences.add("Testing testing...");
 		quizSentences.add("Class dismissed!");
-		quizSentences.add("Translate this?");
+		quizSentences.add("Translate me!");
 		randomGenerator = new Random();
 	}
 	
@@ -133,18 +133,50 @@ public class PigLatin {
 
 	public void runQuiz()
 	{
-		System.out.println("Translate the following sentence:");
-		String sentence = this.getQuizSentence();
-		System.out.println(sentence);
-		String userTranslation = this.getInput();
+		int points = 0;
+		boolean run = true;
+		
+		while (run)
+		{
+			
+			System.out.println("Translate the following sentence:");
+			String sentence = this.getQuizSentence();
+			System.out.println(sentence);
+			String userTranslation = this.getInput();
 
-		String correctTranslation = this.translateSentence(sentence);
-		if (userTranslation.matches(correctTranslation)) {
-			System.out.println("You are correct!");
-		} else {
-			System.out.println("You are wrong! Correct translation:");
-			System.out.println(correctTranslation);
+			String correctTranslation = this.translateSentence(sentence);
+			if (userTranslation.matches(correctTranslation)) {
+				System.out.println("You are correct!");
+				points++;
+			} else {
+				System.out.println("You are wrong! Correct translation:");
+				System.out.println(correctTranslation);
+			}
+			
+			System.out.println("Type yes to continue quiz, no to quit:");
+			Scanner input=new Scanner(System.in);
+			
+			String answer = input.nextLine();
+			
+			if (answer.equals("yes"))
+			{
+				// Continue quiz
+				run = true;
+			}
+			else if (answer.equals("no"))
+			{
+				// Quit quiz
+				run = false;
+			}
+			else
+			{
+				// Incorrect input
+				System.out.println("Incorrect input, shutting down quiz");
+				run = false;
+			}	
 		}
+		
+		System.out.println("Quiz ended with a score of: " + points);
 	}
 	
 	public static void main(String[] args)
