@@ -25,7 +25,9 @@
     </target>
 
     <target name="run" depends="build">
-        <java jar="build/jar/PigLatin.jar" fork="true"/>
+        <java jar="build/jar/PigLatin.jar" fork="true">
+            <arg value="${mode}"/>
+        </java>
     </target>
 
     <target name="compile">
