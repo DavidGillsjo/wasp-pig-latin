@@ -19,7 +19,7 @@ public class PigLatinTest {
                 map.put("banana", "ananabay");
                 map.put("trash", "ashtray");
                 map.put("Trash", "Ashtray");
-                map.put("T", "Tay");
+                map.put("T", "TayTTTT");
                 map.put("a", "away");
                 map.put("eat", "eatway");
                 map.put("cheers", "eerschay");
