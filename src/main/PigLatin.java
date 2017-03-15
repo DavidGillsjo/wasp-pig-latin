@@ -35,7 +35,7 @@ public class PigLatin {
 		* Group 2: First vowel and all letters
 		* Group 3: Other characters (comma, questionmark, etc.)
 		*/
-		String vowels = "(\\A[^AEIOU]*)([AEIOU]\\w*)(\\W*)\\z";
+		String vowels = "(\\A[^AEIOUY]*)([AEIOUY]\\w*)(\\W*)\\z";
                 Pattern r = Pattern.compile(vowels,Pattern.CASE_INSENSITIVE);
 
                 Matcher m = r.matcher(word);
